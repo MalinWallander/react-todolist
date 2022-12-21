@@ -2,6 +2,7 @@ import "./styles/style.css";
 import DateTime from "./components/dateLina";
 import { useState } from "react";
 import Tasks from "./components/Tasks";
+import AddTask from "./components/AddTask";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -75,10 +76,17 @@ function App() {
     );
   };
 
+  const createTask = (newTask) => {
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+  };
+
   return (
     <div className="App">
-      <DateTime />
-      <Tasks tasks={tasks} handleCheck={handleCheck} />
+      <section>
+        <DateTime />
+        <Tasks tasks={tasks} handleCheck={handleCheck} />
+        <AddTask taskLen={tasks.length} createTask={createTask} />
+      </section>
     </div>
   );
 }
